@@ -1,0 +1,485 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src\components\Survey.vue</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../index.html">all files</a> / <a href="index.html">src/components/</a> Survey.vue
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>0/41</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/10</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>0/4</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>0/41</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">&lt;template&gt;
+  &lt;div id="survey"&gt;
+    &lt;v-progress-linear :indeterminate="$store.state.loading" fixed class="ma-0"&gt;&lt;/v-progress-linear&gt;
+    &lt;v-container v-if="$store.state.survey.surveyHeader &amp;&amp; $store.state.survey.surveyContent &amp;&amp; $store.state.user.user &amp;&amp; $store.state.plan.basicPlan &amp;&amp; $store.state.family.members"
+      grid-list-xs pb-4&gt;
+      &lt;SurveyHeader v-if="$store.state.showHeader"&gt;&lt;/SurveyHeader&gt;
+      &lt;SurveyContent&gt;&lt;/SurveyContent&gt;      
+    &lt;/v-container&gt;
+    &lt;v-dialog v-model="dialog"&gt;
+        &lt;v-card&gt;
+          &lt;v-card-title class="headline"&gt;{{$t('lang.confirmation.surveyStatus')}}&lt;/v-card-title&gt;
+          &lt;v-card-text&gt;{{confirmationText}}&lt;/v-card-text&gt;
+          &lt;v-card-actions&gt;
+            &lt;v-spacer&gt;&lt;/v-spacer&gt;
+            &lt;v-btn color="green darken-1" flat="flat" @click="statusConfirm"&gt;{{$t('lang.confirmation.confirm')}}&lt;/v-btn&gt;
+          &lt;/v-card-actions&gt;
+        &lt;/v-card&gt;
+      &lt;/v-dialog&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
+&nbsp;
+&lt;script&gt;
+import i18n from '../locales/index'
+import api from '../utils/backend-api'
+import SurveyHeader from './SurveyHeader'
+import SurveyContent from './SurveyContent'
+&nbsp;
+export default {
+  components: { SurveyHeader, SurveyContent },
+  data() {
+<span class="cstat-no" title="statement not covered" >    return {</span>
+      dialog: false,
+      confirmationText: ''
+    }
+  },
+  methods: {
+    statusConfirm() {
+<span class="cstat-no" title="statement not covered" >      this.dialog = false</span>
+    }
+  },
+  created() {
+<span class="cstat-no" title="statement not covered" >    this.$store.state.hideSSN = true</span>
+<span class="cstat-no" title="statement not covered" >    this.$store.dispatch('survey/updateSurveyHeader', null)</span>
+<span class="cstat-no" title="statement not covered" >    this.$store.dispatch('survey/updateSurveyConent', null)</span>
+<span class="cstat-no" title="statement not covered" >    this.$store.dispatch('plan/updateBasicPlan', null)</span>
+<span class="cstat-no" title="statement not covered" >    this.$store.dispatch('family/updateMembers', null)</span>
+<span class="cstat-no" title="statement not covered" >    this.$store.dispatch('setLoadingStatus', true)</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    api.getData('newapi/getSurveyUser').then(</span>
+      res =&gt; <span class="fstat-no" title="function not covered" >{</span>
+        const user = <span class="cstat-no" title="statement not covered" >res.data</span>
+<span class="cstat-no" title="statement not covered" >        Store.dispatch('user/updateUser', user)</span>
+<span class="cstat-no" title="statement not covered" >        Store.dispatch(</span>
+          'switchI18n',
+          user.LanguageCodeSet == 'ko-KR' ? 'ko' : 'en'
+        )
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        this.$store.dispatch(</span>
+          'survey/updateSurveySubmittedDate',
+          this.$store.state.user.user.SurveySubmittedDate
+        )
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        api.getData('newapi/getSurveyData').then(</span>
+          res =&gt; <span class="fstat-no" title="function not covered" >{</span>
+            const surveyData = <span class="cstat-no" title="statement not covered" >res.data</span>
+<span class="cstat-no" title="statement not covered" >            console.log('surveyData :', surveyData)</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            this.$store.dispatch(</span>
+              'survey/updateSurveyHeader',
+              surveyData.SurveyHeader
+            )
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            this.$store.dispatch(</span>
+              'survey/updateSurveyConent',
+              surveyData.SurveyContent
+            )
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            this.$store.dispatch('plan/updateBasicPlan', surveyData.BasicPlan)</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            this.$store.dispatch('family/updateMembers', surveyData.Members)</span>
+&nbsp;
+            var startDate = <span class="cstat-no" title="statement not covered" >Date.parse(</span>
+              this.$store.state.survey.surveyHeader.SVY_SURVEYSTARTDATE
+            )
+            var endDate = <span class="cstat-no" title="statement not covered" >Date.parse(</span>
+              this.$store.state.survey.surveyHeader.SVY_SURVEYENDDATE
+            )
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            console.log('not started yet:', startDate &gt;= Date.now())</span>
+<span class="cstat-no" title="statement not covered" >            console.log('survey ended :', endDate &lt;= Date.now())</span>
+<span class="cstat-no" title="statement not covered" >            if (</span>
+              this.$store.state.survey.surveyHeader.SVY_SURVEYSTATUSCODE !=
+              'SST_TEMP_STARTED'
+            ) {
+<span class="cstat-no" title="statement not covered" >              this.dialog = true</span>
+<span class="cstat-no" title="statement not covered" >              this.confirmationText = i18n.tc('lang.confirmation.surveyEnd')</span>
+            }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            if (startDate &gt;= Date.now()) {</span>
+<span class="cstat-no" title="statement not covered" >              this.dialog = true</span>
+<span class="cstat-no" title="statement not covered" >              this.confirmationText = i18n.tc(</span>
+                'lang.confirmation.surveyNotStarted'
+              )
+            }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            if (endDate &lt;= Date.now()) {</span>
+<span class="cstat-no" title="statement not covered" >              this.dialog = true</span>
+<span class="cstat-no" title="statement not covered" >              this.confirmationText = i18n.tc('lang.confirmation.surveyEnd')</span>
+            }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            if (this.$store.state.survey.surveySubmittedDate) {</span>
+<span class="cstat-no" title="statement not covered" >              this.$store.dispatch(</span>
+                'updateSurveyStep',
+                this.$store.state.survey.surveySteps.length
+              )
+            } else {
+<span class="cstat-no" title="statement not covered" >              this.$store.dispatch('updateSurveyStep', 1)</span>
+            }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            this.$store.dispatch('setLoadingStatus', false)</span>
+          },
+          err =&gt; <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >            console.log('error :', err)</span>
+<span class="cstat-no" title="statement not covered" >            this.$store.dispatch('setLoadingStatus', false)</span>
+          }
+        )
+      },
+      err =&gt; <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >        console.log(err)</span>
+      }
+    )
+  },
+  mounted() {
+<span class="cstat-no" title="statement not covered" >    console.log('mounted :', 'survey')</span>
+  }
+}
+&lt;/script&gt;
+&nbsp;
+&lt;style scoped&gt;
+&lt;/style&gt;
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Jul 03 2018 13:22:46 GMT+0900 (Korea Standard Time)
+</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>

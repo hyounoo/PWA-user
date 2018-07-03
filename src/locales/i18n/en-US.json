@@ -1,0 +1,85 @@
+{
+  "error": {
+    "no_surveydata_exist": "The user doesn't have survey data.",
+    "no_survey_exist": "No survey exsist.",
+    "invalid_grant": "The user name or password is incorrect.",
+    "network_error": "Network Error"
+  },
+  "validation": {
+    "required": " is required.",
+    "familyInfo": "Family Info Invalid.",
+    "missingBasicPlans": "Missing basic plans.",
+    "employeeAleadyExists": "Employee already exists.",
+    "spouseAleadyExists": "Employee and Spouse already exists.",
+    "duplicatedEmployee": "Duplicated employee.",
+    "duplicatedSpouse": "Duplicated spouse.",
+    "cannotRemoveEmployee": "Can't remove Employee.",
+    "ssnInvalid": "Invalid SSN",
+    "ssnDuplicated": "Duplicated SSN",
+    "missingEmployee": "Missing Employee info",
+    "duplicatedParents": "Parents cannot exceed 2.",
+    "duplicatedSpuseParents": "Spouse Parents cannot exceed 2.",
+    "missingTopupSelection": "Topup should be selected for Topup members."
+  },
+  "confirmation": {
+    "surveyStatus": "Survey Status",
+    "surveyNotStarted": "Survey has not started yet.",
+    "surveyEnd": "Survey has stopped.",
+    "confirm": "Confirm",
+    "missingSurveySetting": "Missing Survey plan setting.",
+    "memberEdit": "Member edit",
+    "deleteMember": "Do you want to delete: ",
+    "delete": "Delete",
+    "cancel": "Cancel"
+  },
+  "login": {
+    "enrollmentUser": "Enrollment User",
+    "userId": "User ID",
+    "password": "Password",
+    "login": "Login"
+  },
+  "greeting": "Hello, {0}",
+  "saveCompleted": "Save completed!",
+  "start": {
+    "step": "Start",
+    "nextButton": "Continue",
+    "prevButton": "Back"
+  },
+  "familyInfo": {
+    "step": "Family Info",
+    "nextButton": "Continue",
+    "prevButton": "Back"
+  },
+  "basicPlan": {
+    "step": "Basic Plan",
+    "nextButton": "Continue",
+    "prevButton": "Back"
+  },
+  "topup": {
+    "step": "Top Up",
+    "basicPlan": "Basic plans",
+    "topupPlan": "Topup plans",
+    "nextButton": "Continue",
+    "prevButton": "Back"
+  },
+  "summary": {
+    "step": "Summary",
+    "basicPlan": "Basic plans",
+    "topupPlan": "Topup plans",
+    "nextButton": "Complete",
+    "prevButton": "Back",
+    "restart": "Restart"
+  },
+  "member": {
+    "relationship": "Relationship",
+    "name": "Name",
+    "ssn": "SSN",
+    "basicPlan": "Basic Plan",
+    "topup": "Top Up"
+  },
+  "totalPremium": "Total Premium",
+  "total": "Sum",
+  "notice": {
+    "msg": "You have message"
+  }
+}

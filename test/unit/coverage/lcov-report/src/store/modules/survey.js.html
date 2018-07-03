@@ -1,0 +1,365 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src\store\modules\survey.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../prettify.css" />
+    <link rel="stylesheet" href="../../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../../index.html">all files</a> / <a href="index.html">src/store/modules/</a> survey.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">21.05% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>4/19</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/6</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>0/0</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">21.05% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>4/19</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import Vue from 'vue'
+import Vuex from 'vuex'
+import SurveyIntroduction from '../../components/SurveyIntroduction'
+import FamilyInput from '../../components//FamilyInput'
+import EmployeeChoice from '../../components//EmployeeChoice'
+import Topup from '../../components//TopUp'
+import SurveySummary from '../../components//SurveySummary'
+&nbsp;
+Vue.use(Vuex)
+&nbsp;
+const state = {
+  callingAPI: false,
+  surveyHeader: null,
+  surveyContent: null,
+  surveySteps: [],
+  surveySubmittedDate: null
+}
+&nbsp;
+const actions = {
+  updateSurveyHeader({
+    commit
+  }, surveyHeader) {
+<span class="cstat-no" title="statement not covered" >    commit('setSurveyHeader', surveyHeader)</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (surveyHeader) {</span>
+      var steps = <span class="cstat-no" title="statement not covered" >[{</span>
+          name: 'lang.start.step',
+          prevButton: 'lang.start.prevButton',
+          nextButton: 'lang.start.nextButton',
+          component: SurveyIntroduction
+        },
+        {
+          name: 'lang.familyInfo.step',
+          prevButton: 'lang.familyInfo.prevButton',
+          nextButton: 'lang.familyInfo.nextButton',
+          component: FamilyInput
+        }
+      ]
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      if (surveyHeader.SVY_SKIPSTEP_PLANBASIC != true) {</span>
+<span class="cstat-no" title="statement not covered" >        steps.push({</span>
+          name: 'lang.basicPlan.step',
+          prevButton: 'lang.basicPlan.prevButton',
+          nextButton: 'lang.basicPlan.nextButton',
+          component: EmployeeChoice
+        })
+      }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      if (surveyHeader.SVY_SKIPSTEP_PLANTOPUP != true) {</span>
+<span class="cstat-no" title="statement not covered" >        steps.push({</span>
+          name: 'lang.topup.step',
+          prevButton: 'lang.topup.prevButton',
+          nextButton: 'lang.topup.nextButton',
+          component: Topup
+        })
+      }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      steps.push({</span>
+        name: 'lang.summary.step',
+        prevButton: 'lang.summary.prevButton',
+        nextButton: 'lang.summary.nextButton',
+        component: SurveySummary
+      })
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      commit('setSurveySteps', steps)</span>
+    }
+  },
+  updateSurveyConent({
+    commit
+  }, surveyContent) {
+<span class="cstat-no" title="statement not covered" >    commit('setSurveyContent', surveyContent)</span>
+  },
+  updateSurveySubmittedDate({
+    commit
+  }, submittedDate) {
+<span class="cstat-no" title="statement not covered" >    commit('setSurveySubmittedDate', submittedDate)</span>
+  }
+}
+&nbsp;
+const mutations = {
+  setSurveyHeader(state, surveyHeader) {
+<span class="cstat-no" title="statement not covered" >    state.surveyHeader = surveyHeader</span>
+  },
+  setSurveyContent(state, surveyContent) {
+<span class="cstat-no" title="statement not covered" >    state.surveyContent = surveyContent</span>
+  },
+  setSurveySteps(state, steps) {
+<span class="cstat-no" title="statement not covered" >    state.surveySteps = steps</span>
+  },
+  setSurveySubmittedDate(state, submittedDate) {
+<span class="cstat-no" title="statement not covered" >    state.surveySubmittedDate = submittedDate</span>
+  }
+}
+&nbsp;
+export default {
+  namespaced: true,
+  state,
+  actions,
+  mutations
+}
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Jul 03 2018 13:22:46 GMT+0900 (Korea Standard Time)
+</div>
+</div>
+<script src="../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../sorter.js"></script>
+</body>
+</html>

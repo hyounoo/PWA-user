@@ -1,0 +1,85 @@
+{
+  "error": {
+    "no_surveydata_exist": "사용자의 서베이 정보가 없습니다.",
+    "no_survey_exist": "서베이 정보가 없습니다.",
+    "invalid_grant": "아이디 또는 패스워드가 다릅니다.",
+    "network_error": "네트워크 오류가 발생하였습니다."
+  },
+  "validation": {
+    "required": " 은(는) 필수 입력값 입니다.",
+    "familyInfo": "가족 정보 오류를 확인해주세요.",
+    "missingBasicPlans": "기본 보장을 선택해주세요.",
+    "employeeAleadyExists": "직원이 이미 존재합니다.",
+    "spouseAleadyExists": "배우자가 이미 존재합니다.",
+    "duplicatedEmployee": "직원이 중복되었습니다.",
+    "duplicatedSpouse": "배우자가 중복되었습니다.",
+    "cannotRemoveEmployee": "직원은 삭제 할 수 없습니다.",
+    "ssnInvalid": "주민등록번호 오류",
+    "ssnDuplicated": "주민등록번호가 중복되었습니다.",
+    "missingEmployee": "직원정보는 필수입니다.",
+    "duplicatedParents": "부모는 2명만 입력할 수 있습니다.",
+    "duplicatedSpuseParents": "배우자 부모는 2명만 입력할 수 있습니다.",
+    "missingTopupSelection": "추가보장을 선택하시거나 추가보장 대상을 삭제해 주십시오."
+  },
+  "confirmation": {
+    "surveyStatus": "서베이 상태",
+    "surveyNotStarted": "서베이가 아직 시작되지 않았습니다.",
+    "surveyEnd": "서베이가 종료되었습니다.",
+    "confirm": "확인",
+    "missingSurveySetting": "서베이 플랜 설정이 완료 되지 않았습니다.",
+    "memberEdit": "멤버 수정",
+    "deleteMember": "다음의 멤버를 삭제하시겠습니까: ",
+    "delete": "삭제",
+    "cancel": "취소"
+  },
+  "login": {
+    "enrollmentUser": "엔롤먼트 유저",
+    "userId": "아이디",
+    "password": "비밀번호",
+    "login": "로그인"
+  },
+  "greeting": "반갑습니다 {0}님",
+  "saveCompleted": "저장 완료!",
+  "start": {
+    "step": "시작",
+    "nextButton": "다음",
+    "prevButton": "이전"
+  },
+  "familyInfo": {
+    "step": "가족정보",
+    "nextButton": "다음",
+    "prevButton": "이전"
+  },
+  "basicPlan": {
+    "step": "기본보장",
+    "nextButton": "다음",
+    "prevButton": "이전"
+  },
+  "topup": {
+    "step": "추가담보",
+    "basicPlan": "기본 보장",
+    "topupPlan": "추가 보장",
+    "nextButton": "다음",
+    "prevButton": "이전"
+  },
+  "summary": {
+    "step": "요약",
+    "basicPlan": "기본 보장",
+    "topupPlan": "추가 보장",
+    "nextButton": "완료",
+    "prevButton": "이전",
+    "restart": "재시작"
+  },
+  "member": {
+    "relationship": "관계",
+    "name": "이름",
+    "ssn": "주민등록번호",
+    "basicPlan": "기본보장",
+    "topup": "추가보장"
+  },
+  "total": "합계",
+  "totalPremium": "보험료 합계",
+  "notice": {
+    "msg": "You have 메세지"
+  }
+}
