@@ -2,30 +2,18 @@
   <v-form v-model="valid" ref="form" lazy-validation>    
     <v-card>
       <v-card-text>
-        <v-layout row>
-          <v-flex xs6>
-            <v-select :label="$t('lang.member.relationship')" 
-              :rules="appUtil.memberRules(item)"
-              :readonly="familyInfoReadyOnly && !isTopupMember" @change="relationshipChanged" 
-              :items="isTopupMember ? topupPlans : plans" v-model="item.FamilyCode" item-text="text" item-value="type">
-            </v-select>
+        <v-layout row wrap>
+          <v-flex :class="{'xs4' : this.isSummary, 'xs6' : !this.isSummary}" >
+            <member-relationship
+              :item="item" :plans="plans" :familyInfoReadyOnly="familyInfoReadyOnly" :isSummary="isSummary"></member-relationship>
           </v-flex>
-          <v-flex xs6>
-            <v-text-field :label="$t('lang.member.name')" 
-              :rules="appUtil.requiredRules($t('lang.member.name'))"
-              :readonly="familyInfoReadyOnly && !isTopupMember" :return-value.sync="item.MemberName" v-model="item.MemberName"></v-text-field>
+          <v-flex :class="{'xs3' : this.isSummary, 'xs6' : !this.isSummary}">
+            <member-name
+              :item="item" :familyInfoReadyOnly="familyInfoReadyOnly"></member-name>
           </v-flex>
-        </v-layout>
-        <v-layout row>
-          <v-flex xs9>
-            <v-text-field :label="$t('lang.member.ssn')" @change="ssnChanged"
-            :rules="appUtil.ssnRules(item.SSN)"
-              :readonly="familyInfoReadyOnly && !isTopupMember" mask="######-#######" 
-              v-model="item.SSN" 
-              :append-icon-cb="() => (item.SSNVisibility = !item.SSNVisibility)"
-              :append-icon="item.SSNVisibility ? 'visibility' : 'visibility_off'"
-              :type="item.SSNVisibility ? 'password' : 'text'">
-            </v-text-field>
+          <v-flex :class="{'xs5' : this.isSummary, 'xs9' : !this.isSummary}">
+            <member-SSN
+              :item="item" :plans="plans" :familyInfoReadyOnly="familyInfoReadyOnly" :isSummary="isSummary"></member-SSN>
           </v-flex>
           <v-flex xs3 pt-2 v-if="deleteShow || isTopupMember">
             <v-btn icon @click="deleteItem(index)">
@@ -34,45 +22,17 @@
           </v-flex>
         </v-layout>
         <v-layout row v-if="basicPlanShow && basicPlans && basicPlans.length > 0">
-          <v-flex xs12>
-            <v-flex xs6>{{$t('lang.member.basicPlan')}}</v-flex>
-            <v-radio-group v-if="basicPlans"
-              v-model="item.BasicPlanID">
-              <template 
-                v-for="plan in basicPlans">
-                <v-radio :disabled="basicPlanReadOnly" :rules="appUtil.requiredRules($t('lang.member.basicPlan'))"
-                  :key="plan.id" :label="plan.text" :value="plan.id"></v-radio>
-              </template>
-            </v-radio-group>
-          </v-flex>
+            <member-basic-plans
+              :item="item" :plans="plans" :basicPlanReadOnly="basicPlanReadOnly" :isSummary="isSummary"></member-basic-plans>
         </v-layout>
         <v-layout row v-if="topupShow && topups && topups.length > 0 && item.SVYDataMemberTopUps && item.SVYDataMemberTopUps.length > 0">
-          <v-flex xs12>
-            <v-flex xs6>{{$t('lang.member.topup')}}</v-flex>
-            <template v-for="(topup, index) in topups">
-              <div :key="topup.id" v-if="item.SVYDataMemberTopUps[index]">
-                <v-layout row>
-                  <v-flex xs9>
-                    <v-checkbox :disabled="topupReadOnly" hide-details
-                      :label="topup.text"
-                      v-model="item.SVYDataMemberTopUps[index].Selected">
-                    </v-checkbox>
-                  </v-flex>
-                  <v-flex xs3 pt-2 right v-bind:class="{ 'topupSelected': item.SVYDataMemberTopUps[index].Selected}">
-                    {{item.SVYDataMemberTopUps[index].Amount}}
-                  </v-flex>
-                </v-layout>
-              </div>
-            </template>
-          </v-flex>
+            <member-top-up
+              :item="item" :plans="plans" :topupReadOnly="topupReadOnly" :isSummary="isSummary"></member-top-up>
         </v-layout>      
         <v-layout row v-if="premiumShow && topupShow && topups && topups.length > 0 && item.SVYDataMemberTopUps && item.SVYDataMemberTopUps.length > 0">
           <v-flex>
-            <v-layout row>
-              <v-spacer></v-spacer>
-              <v-flex xs4 right>{{$t('lang.total')}}:</v-flex>
-              <v-flex xs3 right>{{topupTotal}}</v-flex>
-            </v-layout>
+              <member-total
+              :item="item"></member-total>
           </v-flex>
         </v-layout>
       </v-card-text>
@@ -94,7 +54,21 @@
 <script>
 import i18n from '../locales/index'
 import api from '../utils/backend-api'
+import MemberRelationship from './MemberRelationship'
+import MemberName from './MemberName'
+import MemberSSN from './MemberSSN'
+import MemberBasicPlans from './MemberBasicPlans'
+import MemberTopUp from './MemberTopUp'
+import MemberTotal from './MemberTotal'
 export default {
+  components: {
+    MemberRelationship,
+    MemberName,
+    MemberSSN,
+    MemberBasicPlans,
+    MemberTopUp,
+    MemberTotal
+  },
   data() {
     return {
       valid: true,
@@ -112,68 +86,10 @@ export default {
     'topupReadOnly',
     'topupShow',
     'premiumShow',
-    'deleteShow'
+    'deleteShow',
+    'isSummary'
   ],
   methods: {
-    relationshipChanged(val) {
-      if (val) {
-        var selectedPlan = this.plans.find(p => p.type == val)
-
-        if (this.item.BasicPlanID != selectedPlan.id)
-          this.item.BasicPlanID = null
-      }
-    },
-    ssnChanged(val) {
-      if (this.isTopupMember) {
-        console.log('updating member...')
-
-        var basicPlan = this.plans.filter(
-          p => p.type == this.item.FamilyCode
-        )[0].children
-
-        var topups = []
-        basicPlan.forEach(function(topup, index) {
-          topups.push({
-            TopupPlanID: topup.id,
-            Amount: null,
-            TopupPlanPremiumID: null,
-            Selected:
-              this.item.SVYDataMemberTopUps[index] &&
-              this.item.SVYDataMemberTopUps[index].TopupPlanID == topup.id
-          })
-        }, this)
-
-        this.item.SVYDataMemberTopUps = topups
-
-        //Calculate age
-        var insuranceStartDate = new Date(
-          this.$store.state.survey.surveyHeader.SVY_INSURANCESTARTDATEFORCALC
-        )
-        this.item.Age = this.appUtil.calculateAge(
-          this.appUtil.getDateOfBirth(this.item.SSN),
-          insuranceStartDate
-        )
-
-        this.item.Sex = this.appUtil.GetGender(this.item.SSN)
-
-        this.$store.dispatch('setLoadingStatus', true)
-        var vm = this
-        api.postData('newapi/getMembers', [this.item]).then(
-          res => {
-            console.log('res.data :', res.data)
-            if (res.data[0] && res.data[0].SVYDataMemberTopUps) {
-              vm.item.SVYDataMemberTopUps = res.data[0].SVYDataMemberTopUps
-            }
-            //this.$store.dispatch('family/updateMembers', res.data)
-            this.$store.dispatch('setLoadingStatus', false)
-          },
-          err => {
-            console.log(err)
-            this.$store.dispatch('setLoadingStatus', false)
-          }
-        )
-      }
-    },
     deleteItem(index) {
       // alert user for delete
       this.memberToDelete = index
@@ -234,25 +150,6 @@ export default {
       return selectedPlan && selectedPlan.length > 0
         ? selectedPlan[0].children
         : null
-    },
-    topupTotal() {
-      var totalAmount = 0
-      var premiumAmounts = []
-
-      if (this.item.SVYDataMemberTopUps) {
-        this.item.SVYDataMemberTopUps.forEach(function(topup) {
-          if (topup.Selected) premiumAmounts.push(topup.Amount)
-        }, this)
-
-        if (premiumAmounts.length > 0) {
-          totalAmount = premiumAmounts.reduce(function(acc, val) {
-            return acc + val
-          })
-        }
-
-        this.snackbar = true
-      }
-      return totalAmount
     }
   }
 }

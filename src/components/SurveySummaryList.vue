@@ -20,6 +20,7 @@
             :basicPlanReadOnly="true" :basicPlanShow="!$store.state.survey.surveyHeader.SVY_SUMMARYDISPLAY_PLANBASIC" 
             :topupReadOnly="true" :topupShow="!$store.state.survey.surveyHeader.SVY_SUMMARYDISPLAY_PLANTOPUP"
             :premiumShow="!$store.state.survey.surveyHeader.SVY_SUMMARYDISPLAY_PREMIUM"
+            :isSummary="true"
             ref="members"></Member>
         </v-flex>
       </v-data-iterator>
@@ -40,6 +41,7 @@
             :basicPlanReadOnly="true" :basicPlanShow="!$store.state.survey.surveyHeader.SVY_SUMMARYDISPLAY_PLANBASIC" 
             :topupReadOnly="true" :topupShow="!$store.state.survey.surveyHeader.SVY_SUMMARYDISPLAY_PLANTOPUP"
             :premiumShow="!$store.state.survey.surveyHeader.SVY_SUMMARYDISPLAY_PREMIUM"
+            :isSummary="true"
             ref="members"></Member>
         </v-flex>
       </v-data-iterator>

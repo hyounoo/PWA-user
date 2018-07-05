@@ -182,12 +182,20 @@ export default {
 
         if (candidate.filter(b => b.BasicPlanID == null).length != 0) {
           Store.state.error = true
-          Store.state.errorText = i18n.tc('lang.validation.missingBasicPlans')
+          Store.state.errorText = 'lang.validation.missingBasicPlans'
           return
         }
       }
 
       if (this.currentStepName == 'lang.topup.step') {
+        if (
+          !this.$refs.contentComponent[n - 1].validate() ||
+          !this.allFamilyInfoValid
+        ) {
+          Store.state.error = true
+          Store.state.errorText = 'lang.validation.familyInfo'
+          return
+        }
         var noTopupFound = false
         var topupMembers = this.$store.state.family.members.filter(
           m => m.BasicPlanID == null
@@ -206,9 +214,7 @@ export default {
         if (noTopupFound) {
           console.log('this.currentStepName :', this.currentStepName)
           Store.state.error = true
-          Store.state.errorText = i18n.tc(
-            'lang.validation.missingTopupSelection'
-          )
+          Store.state.errorText = 'lang.validation.missingTopupSelection'
           return
         }
       }
@@ -261,9 +267,10 @@ export default {
                 Amount: null,
                 TopupPlanPremiumID: null,
                 Selected:
-                  member.SVYDataMemberTopUps &&
-                  member.SVYDataMemberTopUps.length > 0 &&
-                  member.SVYDataMemberTopUps[index].TopupPlanID == topup.id
+                  member.SVYDataMemberTopUps != null &&
+                  member.SVYDataMemberTopUps.find(
+                    t => t.TopupPlanID == topup.id
+                  )
               })
             }, this)
           } else if (topupPlanChildren) {
@@ -273,9 +280,10 @@ export default {
                 Amount: null,
                 TopupPlanPremiumID: null,
                 Selected:
-                  member.SVYDataMemberTopUps &&
-                  member.SVYDataMemberTopUps.length > 0 &&
-                  member.SVYDataMemberTopUps[index].TopupPlanID == topup.id
+                  member.SVYDataMemberTopUps != null &&
+                  member.SVYDataMemberTopUps.find(
+                    t => t.TopupPlanID == topup.id
+                  )
               })
             }, this)
           }
@@ -292,22 +300,20 @@ export default {
             insuranceStartDate
           )
           member.Sex = this.appUtil.GetGender(member.SSN)
-
-          this.$store.dispatch('setLoadingStatus', true)
-          api
-            .postData('newapi/getMembers', this.$store.state.family.members)
-            .then(
-              res => {
-                this.$store.dispatch('family/updateMembers', res.data)
-                this.$store.dispatch('setLoadingStatus', false)
-              },
-              err => {
-                console.log(err)
-                this.$store.dispatch('setLoadingStatus', false)
-              }
-            )
         }
       }, this)
+
+      this.$store.dispatch('setLoadingStatus', true)
+      api.postData('newapi/getMembers', this.$store.state.family.members).then(
+        res => {
+          this.$store.dispatch('family/updateMembers', res.data)
+          this.$store.dispatch('setLoadingStatus', false)
+        },
+        err => {
+          console.log(err)
+          this.$store.dispatch('setLoadingStatus', false)
+        }
+      )
     },
     toggleSSNVisibility() {
       this.$store.state.hideSSN = !this.$store.state.hideSSN
