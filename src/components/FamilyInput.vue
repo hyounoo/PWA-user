@@ -30,7 +30,7 @@ export default {
   methods: {
     validate() {
       var valid = true
-      this.$refs.familyList.$children[0].$children.forEach(member => {
+      this.$refs.familyList.$refs.Members.$children.forEach(member => {
         valid = member.validate()
       })
       return valid

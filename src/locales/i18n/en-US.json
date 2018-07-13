@@ -28,7 +28,7 @@
     "confirm": "Confirm",
     "missingSurveySetting": "Missing Survey plan setting.",
     "memberEdit": "Member edit",
-    "deleteMember": "Do you want to delete: ",
+    "deleteMember": "Do you want to delete member?",
     "delete": "Delete",
     "cancel": "Cancel"
   },
@@ -47,6 +47,7 @@
   },
   "familyInfo": {
     "step": "Family Info",
+    "addButton": "Add family info",
     "nextButton": "Continue",
     "prevButton": "Back"
   },
@@ -57,6 +58,7 @@
   },
   "topup": {
     "step": "Top Up",
+    "addButton": "Add family info",
     "basicPlan": "Basic plans",
     "topupPlan": "Topup plans",
     "nextButton": "Continue",

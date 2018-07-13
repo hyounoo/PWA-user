@@ -28,7 +28,7 @@
     "confirm": "확인",
     "missingSurveySetting": "서베이 플랜 설정이 완료 되지 않았습니다.",
     "memberEdit": "멤버 수정",
-    "deleteMember": "다음의 멤버를 삭제하시겠습니까: ",
+    "deleteMember": "다음의 멤버를 삭제하시겠습니까?",
     "delete": "삭제",
     "cancel": "취소"
   },
@@ -47,6 +47,7 @@
   },
   "familyInfo": {
     "step": "가족정보",
+    "addButton": "가족 정보 추가",
     "nextButton": "다음",
     "prevButton": "이전"
   },
@@ -57,6 +58,7 @@
   },
   "topup": {
     "step": "추가담보",
+    "addButton": "가족 정보 추가",
     "basicPlan": "기본 보장",
     "topupPlan": "추가 보장",
     "nextButton": "다음",
@@ -66,7 +68,7 @@
     "step": "요약",
     "basicPlan": "기본 보장",
     "topupPlan": "추가 보장",
-    "nextButton": "완료",
+    "nextButton": "제출",
     "prevButton": "이전",
     "restart": "재시작"
   },

@@ -22,13 +22,16 @@
       <router-link :to="'/home'">
         <!-- <img :src="require('@/assets/android-icon-36x36.png')" alt="Marsh"> -->
       </router-link>
-      <v-toolbar-title v-text="title"></v-toolbar-title>
+      <v-toolbar-title>{{surveyHeader}}</v-toolbar-title>
       
       <v-spacer></v-spacer>
       <v-spacer></v-spacer>
       <v-spacer></v-spacer>
       <v-spacer></v-spacer>
-      <BottomSheet></BottomSheet>
+      <!-- <BottomSheet></BottomSheet> -->
+      <v-btn icon :to="'/backtoapp'">
+        <v-icon>clear</v-icon>
+      </v-btn>
       
       <!-- <v-badge class="ml-5">
         <span slot="badge">6</span>
@@ -104,19 +107,24 @@ export default {
           url: '/survey',
           visible: auth.loggedIn()
         },
-        {
-          icon: 'lock',
-          title: 'Logout',
-          url: '/logout',
-          visible: auth.loggedIn()
-        },
+        // {
+        //   icon: 'lock',
+        //   title: 'Logout',
+        //   url: '/logout',
+        //   visible: auth.loggedIn()
+        // },
         {
           icon: 'arrow_back',
-          title: 'Back to App',
+          title: 'Close',
           url: '/backtoapp',
           visible: auth.loggedIn()
         }
       ]
+    },
+    surveyHeader() {
+      if(this.$store.state.survey.surveyHeader !== null)
+        this.title = this.$store.state.survey.surveyHeader.SVY_SURVEYTITLE
+      return this.title
     }
   },
   created() {
@@ -152,7 +160,7 @@ export default {
 }
 
 .scrollButton {
-  right: 60px;
+  right: 25px;
   bottom: 45px;
 }
 </style>

@@ -1,7 +1,8 @@
 <template>
   <div>
-    <v-text-field v-if="isSummary" :label="$t('lang.member.relationship')" v-model="familyCodeToString"></v-text-field>
-    <v-select :label="$t('lang.member.relationship')"  v-else
+    <!-- <v-text-field v-if="isSummary || (familyInfoReadyOnly && !isTopupMember)" :label="$t('lang.member.relationship')" v-model="familyCodeToString" readonly></v-text-field> -->
+    <span v-if="isSummary || (familyInfoReadyOnly && !isTopupMember)">{{ familyCodeToString }}</span>
+    <v-select :placeholder="$t('lang.member.relationship')"  v-else
       :rules="appUtil.memberRules(item)"
       :readonly="familyInfoReadyOnly && !isTopupMember" @change="relationshipChanged" 
       :items="isTopupMember ? topupPlans : plans" v-model="item.FamilyCode" item-text="text" item-value="type">
@@ -31,14 +32,12 @@ export default {
         if (this.item.BasicPlanID != selectedPlan.id)
           this.item.BasicPlanID = null
       }
-    },
-    validate() {
-      return this.$refs.form.validate()
     }
   },
   computed: {
     familyCodeToString(){
-      if(this.isSummary)
+      
+      if(this.isSummary || (this.familyInfoReadyOnly && !this.isTopupMember))
       {
         var str = this.plans.find(m => m.type == this.item.FamilyCode)
         return str === undefined ? null : str.text

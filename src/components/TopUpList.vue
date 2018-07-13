@@ -11,7 +11,8 @@
         </v-card-text>
       </v-card>
       <v-data-iterator content-tag="v-layout" row wrap :items="items" 
-        hide-actions :rows-per-page-items="[-1]">
+        hide-actions :rows-per-page-items="[-1]"
+        ref="BasicMembers">
         <v-flex slot="item" slot-scope="props" xs12 sm6 pa-3 v-if="visible(props.item)">
           <Member :item="props.item" :index="props.index" :plans="plans" v-if="plans"
             :familyInfoReadyOnly="true"
@@ -31,7 +32,8 @@
         </v-card-text>
       </v-card>
       <v-data-iterator content-tag="v-layout" row wrap :items="items"
-        hide-actions :rows-per-page-items="[-1]">
+        hide-actions :rows-per-page-items="[-1]"
+        ref="TopUpMembers">
         <v-flex slot="item" slot-scope="props" xs12 sm6 pa-3 v-if="!visible(props.item)">
           <Member :item="props.item" :index="props.index" :plans="plans" v-if="plans"
             :familyInfoReadyOnly="true"
@@ -41,6 +43,7 @@
           ></Member>
         </v-flex>
       </v-data-iterator>
+      <add-member></add-member>
     </v-container>    
     <v-snackbar v-if="!$store.state.loading"
       :timeout="timeout"
@@ -54,7 +57,7 @@
       <span large> Total Premium Amount: <span class="totalPremium">{{ totalPremium }}</span></span>
       <v-btn flat color="red" @click.native="snackbar = false">Close</v-btn>
     </v-snackbar>
-    <v-card v-if="!$store.state.loading" class="elevation-9 ma-3">
+    <!-- <v-card v-if="!$store.state.loading" class="elevation-9 ma-3">
       <v-card-text>        
         <v-flex>
           <v-layout row>
@@ -64,16 +67,18 @@
           </v-layout>
         </v-flex>
       </v-card-text>
-    </v-card>   
+    </v-card>    -->
   </div>
 </template>
 
 <script>
 import api from '../utils/backend-api'
 import Member from './Member'
+import AddMember from './AddMember'
 export default {
   components: {
-    Member
+    Member,
+    AddMember
   },
   data() {
     return {
@@ -81,7 +86,8 @@ export default {
       y: 'bottom',
       x: null,
       mode: '',
-      timeout: 4000
+      timeout: 4000,
+      loaded: false
     }
   },
   computed: {
@@ -119,9 +125,16 @@ export default {
           return acc + val
         })
       }
+      if(this.$store.state.loading)
+        this.loaded = false;
 
-      this.snackbar = true
-      return totalAmount
+      if(this.loaded)
+        this.snackbar = true;
+
+      if(!this.loaded && this.$store.state.survey.surveySteps[this.$store.state.step - 1].name == 'lang.topup.step')
+        this.loaded = true;
+
+      return totalAmount.toFixed(0).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")
     }
   },
   methods: {

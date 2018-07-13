@@ -1,48 +1,16 @@
-
-
 <template>
   <div>
     <v-container v-if="!$store.state.loading" fluid grid-list-md>
-      <v-card class="elevation-9 ma-2">
-        <v-card-text>        
-          <v-flex>
-            <v-layout row>            
-              <v-flex xs12>{{$t('lang.summary.basicPlan')}}</v-flex>
-            </v-layout>
-          </v-flex>
-        </v-card-text>
-      </v-card>
-      <v-data-iterator content-tag="v-layout" row wrap :items="items"
+      <v-data-iterator content-tag="v-layout" row wrap :items="allItems"
         hide-actions :rows-per-page-items="[-1]">
         <v-flex slot="item" slot-scope="props" xs12 sm6 pa-3>
-          <Member :item="props.item" :plans="plans" class="elevation-9"
+          <summary-member :item="props.item" :plans="plans" class="elevation-9"
             :familyInfoReadyOnly="true" 
             :basicPlanReadOnly="true" :basicPlanShow="!$store.state.survey.surveyHeader.SVY_SUMMARYDISPLAY_PLANBASIC" 
             :topupReadOnly="true" :topupShow="!$store.state.survey.surveyHeader.SVY_SUMMARYDISPLAY_PLANTOPUP"
             :premiumShow="!$store.state.survey.surveyHeader.SVY_SUMMARYDISPLAY_PREMIUM"
             :isSummary="true"
-            ref="members"></Member>
-        </v-flex>
-      </v-data-iterator>
-      <v-card v-if="topupItems && topupItems.length > 0" class="elevation-9 ma-2">
-        <v-card-text>        
-          <v-flex>
-            <v-layout row>            
-              <v-flex xs12>{{$t('lang.summary.topupPlan')}}</v-flex>
-            </v-layout>
-          </v-flex>
-        </v-card-text>
-      </v-card>
-      <v-data-iterator v-if="topupItems && topupItems.length > 0" content-tag="v-layout" row wrap :items="topupItems"
-        hide-actions :rows-per-page-items="[-1]">
-        <v-flex slot="item" slot-scope="props" xs12 sm6 pa-3>
-          <Member :item="props.item" :plans="plans" class="elevation-9"
-            :familyInfoReadyOnly="true" 
-            :basicPlanReadOnly="true" :basicPlanShow="!$store.state.survey.surveyHeader.SVY_SUMMARYDISPLAY_PLANBASIC" 
-            :topupReadOnly="true" :topupShow="!$store.state.survey.surveyHeader.SVY_SUMMARYDISPLAY_PLANTOPUP"
-            :premiumShow="!$store.state.survey.surveyHeader.SVY_SUMMARYDISPLAY_PREMIUM"
-            :isSummary="true"
-            ref="members"></Member>
+            ref="members"></summary-member>
         </v-flex>
       </v-data-iterator>
     </v-container>
@@ -52,7 +20,7 @@
           <v-layout row>
             <v-spacer xs5 md8></v-spacer>
             <v-flex xs4 md2 right>{{$t('lang.totalPremium')}}:</v-flex>
-            <v-flex xs3 md2 right><span class="totalPremium">{{ totalPremium }}</span></v-flex>
+            <v-flex xs3 md2 right text-xs-right><span class="totalPremium">{{ totalPremium }}</span></v-flex>
           </v-layout>
         </v-flex>
       </v-card-text>
@@ -62,10 +30,10 @@
 
 <script>
 import api from '../utils/backend-api'
-import Member from './Member'
+import SummaryMember from './SummaryMember'
 export default {
   components: {
-    Member
+    SummaryMember
   },
   data() {
     return {
@@ -98,6 +66,10 @@ export default {
     },
     topupItems() {
       return this.$store.state.family.members.filter(b => b.BasicPlanID == null)
+    },
+    allItems() {
+      var allitem = this.items.concat(this.topupItems);
+      return allitem
     },
     selectedBasicPlan() {
       return this.$store.state.plan.basicPlan.Plans.filter(
@@ -136,7 +108,7 @@ export default {
       }
 
       this.snackbar = true
-      return totalAmount
+      return totalAmount.toFixed(0).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")
     }
   },
   methods: {
@@ -151,7 +123,6 @@ export default {
         IsForeigner: target.IsForeigner,
         MemberName: target.MemberName,
         SSN: target.SSN,
-        SSNVisibility: target.SSNVisibility,
         SVYDataMemberID: target.SVYDataMemberID,
         SVYDataMemberTopUps: target.SVYDataMemberTopUps
       }

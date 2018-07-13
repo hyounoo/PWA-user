@@ -14,9 +14,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     loading: false,
-    showHeader: true,
     fab: false,
-    hideSSN: true,
     step: null,
     error: false,
     errorText: ''

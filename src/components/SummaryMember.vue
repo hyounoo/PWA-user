@@ -3,15 +3,13 @@
     <v-card>
       <v-card-text>
         <v-layout row wrap>
-          <v-flex :class="{'xs3' : this.isSummary, 'xs6' : !this.isSummary}"  v-if="currentStepName != 'lang.basicPlan.step'">
-            <member-relationship
-              :item="item" :plans="plans" :familyInfoReadyOnly="familyInfoReadyOnly" :isSummary="isSummary"></member-relationship>
-          </v-flex>
-          <v-flex :class="{'xs3' : this.isSummary, 'xs6' : !this.isSummary}">
+          <v-flex xs5 text-xs-center>
             <member-name
               :item="item" :familyInfoReadyOnly="familyInfoReadyOnly"></member-name>
+              <member-relationship
+              :item="item" :plans="plans" :familyInfoReadyOnly="familyInfoReadyOnly" :isSummary="isSummary"></member-relationship>
           </v-flex>
-          <v-flex :class="{'xs6' : this.isSummary, 'xs9' : !this.isSummary}" v-if="currentStepName != 'lang.basicPlan.step'">
+          <v-flex xs7 v-if="currentStepName != 'lang.basicPlan.step'">
             <member-SSN
               :item="item" :plans="plans" :familyInfoReadyOnly="familyInfoReadyOnly" :isSummary="isSummary"></member-SSN>
           </v-flex>

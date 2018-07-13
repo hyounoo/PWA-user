@@ -2,7 +2,7 @@
     <v-layout row>
         <v-spacer></v-spacer>
         <v-flex xs4 right>{{$t('lang.total')}}:</v-flex>
-        <v-flex xs3 right>{{topupTotal}}</v-flex>
+        <v-flex xs3 right text-xs-right>{{topupTotal}}</v-flex>
     </v-layout>
 </template>
 
@@ -46,7 +46,7 @@ export default {
 
         this.snackbar = true
       }
-      return totalAmount
+      return totalAmount.toFixed(0).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")
     }
   }
 }

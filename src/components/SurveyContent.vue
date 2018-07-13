@@ -29,19 +29,19 @@
             <v-btn color="primary" @click="restart()" v-show="n == $store.state.survey.surveySteps.length && $store.state.survey.surveySubmittedDate && $store.state.survey.surveyHeader.SVY_SURVEYSTATUSCODE == 'SST_TEMP_STARTED'">              
               {{$t('lang.summary.restart')}}
             </v-btn>
+            <v-btn flat @click="prevStep(n)" v-show="n != 1 && !$store.state.survey.surveySubmittedDate">
+              <span v-t="$store.state.survey.surveySteps[$store.state.step - 1].prevButton"></span>
+            </v-btn>
             <v-btn color="primary" @click="complete()" v-show="n == $store.state.survey.surveySteps.length && !$store.state.survey.surveySubmittedDate">
               <span v-t="$store.state.survey.surveySteps[$store.state.step - 1].nextButton"></span>
             </v-btn>
             <v-btn color="primary" @click="nextStep(n)" v-show="n != $store.state.survey.surveySteps.length && $store.state.plan.basicPlan.Plans.length != 0">
               <span v-t="$store.state.survey.surveySteps[$store.state.step - 1].nextButton"></span>
             </v-btn>
-            <v-btn flat @click="prevStep(n)" v-show="n != 1 && !$store.state.survey.surveySubmittedDate">
-              <span v-t="$store.state.survey.surveySteps[$store.state.step - 1].prevButton"></span>
-            </v-btn>
           </div>          
         </v-stepper-content>
       </v-stepper-items>      
-      <v-speed-dial v-if="!$store.state.loading && $store.state.step > 1"
+      <!-- <v-speed-dial v-if="!$store.state.loading && $store.state.step > 1"
         v-model="$store.state.fab" :bottom="bottom" :right="right" :direction="direction" :transition="transition">
           <v-btn small
             slot="activator" v-model="$store.state.fab"
@@ -57,10 +57,7 @@
             dark fab small color="indigo" @click="addItem()">
             <v-icon>add</v-icon>
           </v-btn>
-          <v-btn dark fab small color="blue" @click="toggleSSNVisibility()">
-            <v-icon>{{$store.state.hideSSN ? 'visibility' : 'visibility_off'}}</v-icon>
-          </v-btn>
-        </v-speed-dial>
+        </v-speed-dial> -->
       <v-snackbar v-if="!$store.state.loading"
         :timeout="timeout"
         :top="y === 'top'"
@@ -145,6 +142,8 @@ export default {
   },
   methods: {
     nextStep(n) {
+      this.scrollToTop();
+
       this.$store.state.fab = false
 
       if (this.currentStepName == 'lang.familyInfo.step') {
@@ -221,10 +220,14 @@ export default {
       this.$store.dispatch('updateSurveyStep', n + 1)
     },
     prevStep(n) {
+      this.scrollToTop();
+      
       this.$store.dispatch('updateSurveyStep', n - 1)
       this.$store.state.fab = false
     },
     complete() {
+      this.scrollToTop();
+
       //saveMembers
       this.$store.dispatch('setLoadingStatus', true)
       api.postData('newapi/saveMembers', this.$store.state.family.members).then(
@@ -242,6 +245,7 @@ export default {
       )
     },
     restart() {
+      this.scrollToTop();
       this.completed = false
       this.$store.dispatch('survey/updateSurveySubmittedDate', null)
       this.$store.dispatch('updateSurveyStep', 1)
@@ -315,13 +319,6 @@ export default {
         }
       )
     },
-    toggleSSNVisibility() {
-      this.$store.state.hideSSN = !this.$store.state.hideSSN
-
-      this.$store.state.family.members.forEach(function(member) {
-        member.SSNVisibility = this.$store.state.hideSSN
-      }, this)
-    },
     addItem() {
       var member = {
         BasicPlanID: null,
@@ -329,13 +326,15 @@ export default {
         IsForeigner: false,
         MemberName: '',
         SSN: '',
-        SSNVisibility: false,
         SVYDataMemberID: null,
         SVYDataMemberTopUps: []
       }
       this.$store.dispatch('family/addMember', member)
     },
-    addTopupMemberItem() {}
+    addTopupMemberItem() {},
+    scrollToTop() {
+      this.$vuetify.goTo(0, { "duration": 300, "offset": 0, "easing": "easeInOutCubic" })
+    }
   },
   updated() {
     console.log('updated :', Store.state.step)

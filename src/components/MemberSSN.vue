@@ -1,18 +1,33 @@
 <template>
   <div>
-    <v-text-field :label="$t('lang.member.ssn')" v-if="isSummary"
-        readonly mask="######-#######" 
-        v-model="item.SSN"         
-        :type="item.SSNVisibility ? 'password' : 'text'">
-    </v-text-field>
-    <v-text-field :label="$t('lang.member.ssn')" @change="ssnChanged" v-if="!isSummary"
+    <span v-if="isSummary">{{ getSSN }}</span>
+    <v-layout row v-else>
+      <!-- <v-flex xs5>
+        <v-text-field :placeholder="$t('lang.member.ssn')" @change="ssnChanged"
+          :rules="appUtil.ssnRules(item.SSN)"
+          :readonly="familyInfoReadyOnly && !isTopupMember" mask="######" 
+          v-model="firstSSN" :value="getFirstSSN"
+          @keyup="autoFocus">
+        </v-text-field>
+      </v-flex>
+      <v-flex xs1>
+        <span>
+          -
+        </span>
+      </v-flex>
+      <v-flex xs6>
+        <v-text-field :placeholder="$t('lang.member.ssn')" @change="ssnChanged"
+          :rules="appUtil.ssnRules(item.SSN)"
+          :readonly="familyInfoReadyOnly && !isTopupMember" mask="#######" 
+          v-model="secondSSN" ref="nextSSN" :value="getSecondSSN">
+        </v-text-field>
+      </v-flex> -->
+      <v-text-field :placeholder="$t('lang.member.ssn')" @change="ssnChanged"
     :rules="appUtil.ssnRules(item.SSN)"
         :readonly="familyInfoReadyOnly && !isTopupMember" mask="######-#######" 
-        v-model="item.SSN" 
-        :append-icon-cb="() => (item.SSNVisibility = !item.SSNVisibility)"
-        :append-icon="item.SSNVisibility ? 'visibility' : 'visibility_off'"
-        :type="item.SSNVisibility ? 'password' : 'text'">
+        v-model="item.SSN" @keyup="checkDigits" ref="ssn" type="tel">
     </v-text-field>
+    </v-layout>
   </div>
 </template>
 
@@ -22,6 +37,8 @@ import api from '../utils/backend-api'
 export default {
   data() {
     return {
+      // firstSSN: '',
+      // secondSSN: ''
     }
   },
   props: [
@@ -35,7 +52,6 @@ export default {
     ssnChanged(val) {
       if (this.isTopupMember) {
         console.log('updating member...')
-
         var basicPlan = this.plans.filter(
           p => p.type == this.item.FamilyCode
         )[0].children
@@ -83,8 +99,10 @@ export default {
         )
       }
     },
-    validate() {
-      return this.$refs.form.validate()
+    checkDigits() {
+      
+      if(this.item.SSN.length == 6)
+        this.$refs.ssn.$el.getElementsByTagName('input')[0].setSelectionRange(7,7);
     }
   },
   computed: {
@@ -93,7 +111,26 @@ export default {
         this.$store.state.step - 1
       ].name
       return name == 'lang.topup.step' && this.item.BasicPlanID == null
-    }
+    },
+    getSSN() {
+      return this.item.SSN
+    },
+    // getFirstSSN() {
+    //   if(this.item.SSN != "") {
+    //     this.firstSSN = this.item.SSN.slice(0,6)
+    //     return this.item.SSN.slice(0,6)
+    //   }
+    //     else
+    //     return "";
+    // },
+    // getSecondSSN() {
+    //   if(this.item.SSN != "") {
+    //     this.secondSSN = this.item.SSN.slice(7)
+    //     return this.item.SSN.slice(7)
+    //   }
+    //     else
+    //     return "";
+    // }
   }
 }
 </script>

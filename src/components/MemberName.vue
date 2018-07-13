@@ -1,7 +1,10 @@
 <template>
-  <v-text-field :label="$t('lang.member.name')" 
+  <v-text-field :placeholder="$t('lang.member.name')" 
     :rules="appUtil.requiredRules($t('lang.member.name'))"
-    :readonly="familyInfoReadyOnly && !isTopupMember" :return-value.sync="item.MemberName" v-model="item.MemberName"></v-text-field>
+    :readonly="familyInfoReadyOnly && !isTopupMember" :return-value.sync="item.MemberName" v-model="item.MemberName" v-if="!familyInfoReadyOnly || isTopupMember" type="text"></v-text-field>
+    <span v-else class="memberName subheading">
+      {{  item.MemberName }}
+      </span>
 </template>
 
 <script>
@@ -17,9 +20,6 @@ export default {
     'familyInfoReadyOnly'
   ],
   methods: {
-    validate() {
-      return this.$refs.form.validate()
-    }
   },
   computed: {
     isTopupMember() {
@@ -33,4 +33,8 @@ export default {
 </script>
 
 <style>
+.memberName{
+    color: #075895;
+    font-weight: bold;
+}
 </style>

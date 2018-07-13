@@ -10,8 +10,8 @@
                       v-model="item.SVYDataMemberTopUps[index].Selected">
                   </v-checkbox>
                   </v-flex>
-                  <v-flex xs3 pt-2 right v-bind:class="{ 'topupSelected': item.SVYDataMemberTopUps[index].Selected}">
-                  {{item.SVYDataMemberTopUps[index].Amount}}
+                  <v-flex xs3 pt-2 right text-xs-right v-bind:class="{ 'topupSelected': item.SVYDataMemberTopUps[index].Selected}">
+                  {{item.SVYDataMemberTopUps[index].Amount.toFixed(0).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")}}
                   </v-flex>
               </v-layout>
             </div>
@@ -37,9 +37,6 @@ export default {
     'isSummary'
   ],
   methods: {
-    validate() {
-      return this.$refs.form.validate()
-    }
   },
   computed: {
     isTopupMember() {
@@ -80,17 +77,6 @@ export default {
       return selectedPlan && selectedPlan.length > 0
         ? selectedPlan[0].children
         : null
-    },
-    ifSummaryPage(index) {
-      if(this.isSummary)
-      {
-      if(this.item.SVYDataMemberTopUps[index].Selected)
-      return true
-      else 
-      return false
-      }
-      else
-      return true
     }
   }
 }

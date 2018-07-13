@@ -1,14 +1,14 @@
 <template>
   <v-flex xs12>
     <v-layout row wrap>
-      <v-flex  :class="{'xs3' : isSummary, 'xs6' : !isSummary}" >{{$t('lang.member.basicPlan')}}</v-flex>
-      <v-flex  :class="{'xs9 pt-0' : isSummary, 'xs12' : !isSummary}">
+      <v-flex  :class="{'xs3' : basicPlanReadOnly, 'xs6' : !basicPlanReadOnly}" v-if="basicPlanReadOnly">{{$t('lang.member.basicPlan')}}</v-flex>
+      <v-flex  :class="{'xs9 pt-0' : basicPlanReadOnly, 'xs12' : !basicPlanReadOnly}">
         <v-radio-group v-if="basicPlans"
-          v-model="item.BasicPlanID" :class="{'summaryRadio' : isSummary}">
+          v-model="item.BasicPlanID" :class="{'pt-0' : basicPlanReadOnly}">
           <template 
             v-for="plan in basicPlans">
             <v-radio :disabled="basicPlanReadOnly" :rules="appUtil.requiredRules($t('lang.member.basicPlan'))"
-              :key="plan.id" :label="plan.text" :value="plan.id"  v-if="!isSummary || (isSummary && item.BasicPlanID == plan.id)"></v-radio>
+              :key="plan.id" :label="plan.text" :value="plan.id"  v-if="!basicPlanReadOnly || (basicPlanReadOnly && item.BasicPlanID == plan.id)"></v-radio>
           </template>
         </v-radio-group>
       </v-flex>
@@ -31,9 +31,6 @@ export default {
     'isSummary'
   ],
   methods: {
-    validate() {
-      return this.$refs.form.validate()
-    }
   },
   computed: {
     basicPlans() {
@@ -45,7 +42,4 @@ export default {
 </script>
 
 <style>
-.summaryRadio {
-  padding-top:0px
-}
 </style>

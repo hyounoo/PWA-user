@@ -2,7 +2,8 @@
   <div>
     <v-data-iterator v-if="!$store.state.loading"
       content-tag="v-layout" row wrap :items="items"       
-      hide-actions :rows-per-page-items="[-1]">
+      hide-actions :rows-per-page-items="[-1]"
+      ref="Members">
       <v-flex slot="item" slot-scope="props" xs12 sm6 pa-3 v-if="visible(props.item)">
         <Member :item="props.item" :index="props.index" :key="props.index" :plans="plans"          
           :basicPlanShow="false"
@@ -11,16 +12,19 @@
         ></Member>
       </v-flex>
     </v-data-iterator>
+    <add-member></add-member>
   </div>
 </template>
 
 <script>
 import api from '../utils/backend-api'
 import Member from './Member'
+import AddMember from './AddMember'
 
 export default {
   components: {
-    Member
+    Member,
+    AddMember
   },
   data() {
     return {

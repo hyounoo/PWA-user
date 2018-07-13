@@ -1,9 +1,12 @@
 <template>
   <div id="survey">
     <v-progress-linear :indeterminate="$store.state.loading" fixed class="ma-0"></v-progress-linear>
+    <!-- <div style="width:100% !important; height: 100% !important; background-color: white; opacity: 0.5; z-index: 1000; position: absolute" class="text-xs-center" v-if="$store.state.loading">
+      <v-progress-circular :size="50" color="primary" :indeterminate="$store.state.loading" :style="{ marginTop : getHeight + 'px' }"></v-progress-circular>
+    </div> -->
     <v-container v-if="$store.state.survey.surveyHeader && $store.state.survey.surveyContent && $store.state.user.user && $store.state.plan.basicPlan && $store.state.family.members"
       grid-list-xs pb-4>
-      <SurveyHeader v-if="$store.state.showHeader"></SurveyHeader>
+      <SurveyHeader v-if="setSurveyHeaderVisibility"></SurveyHeader>
       <SurveyContent></SurveyContent>      
     </v-container>
     <v-dialog v-model="dialog">
@@ -39,7 +42,6 @@ export default {
     }
   },
   created() {
-    this.$store.state.hideSSN = true
     this.$store.dispatch('survey/updateSurveyHeader', null)
     this.$store.dispatch('survey/updateSurveyConent', null)
     this.$store.dispatch('plan/updateBasicPlan', null)
@@ -132,6 +134,18 @@ export default {
   },
   mounted() {
     console.log('mounted :', 'survey')
+  },
+  computed: {
+    getHeight() {
+      var winHeight = window.innerHeight;
+      return winHeight / 2.5;
+    },
+    setSurveyHeaderVisibility() {
+      if(this.$store.state.step == 1 || this.$store.state.step == this.$store.state.survey.surveySteps.length)
+        return true;
+      else
+        return false;
+    }
   }
 }
 </script>
